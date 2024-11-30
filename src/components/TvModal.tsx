@@ -29,7 +29,7 @@ const ModalBox = styled(motion.div)`
     width: 95vw;
     flex-direction: column;
     height: auto;
-    max-height: 90vh;
+    height: 80vh;
   }
 `;
 
