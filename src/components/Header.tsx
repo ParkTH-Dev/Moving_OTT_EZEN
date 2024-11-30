@@ -77,7 +77,7 @@ const Item = styled.li`
     }
   }
 `;
-const LoginLogout = styled.div`
+const LoginLogout = styled(motion.div)`
   button {
     background: inherit;
     border: none;
@@ -254,7 +254,12 @@ const Header = () => {
         </Items>
       </Col>
       <Col>
-        <LoginLogout>
+        <LoginLogout
+          animate={{
+            x: searchOpen ? (window.innerWidth <= 768 ? 0 : -210) : 0,
+          }}
+          transition={{ type: "linear" }}
+        >
           <button onClick={handleLoginLogout}>
             {isLoggedIn ? "로그인" : "로그아웃"}
           </button>

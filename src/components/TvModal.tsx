@@ -9,7 +9,7 @@ import { GoCodeReview } from "react-icons/go";
 import { BiSolidCameraMovie } from "react-icons/bi";
 
 const ModalBox = styled(motion.div)`
-  position: absolute;
+  position: fixed;
   left: 0%;
   right: 0%;
   margin: 0 auto;
@@ -22,6 +22,9 @@ const ModalBox = styled(motion.div)`
   display: flex;
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
   z-index: 99;
+  top: 50%;
+  transform: translateY(-50%);
+
   @media (max-width: 768px) {
     width: 95vw;
     flex-direction: column;
@@ -224,11 +227,8 @@ const TvBackground = styled.div<{ $bgPhoto: string }>`
   border-radius: 15px;
   min-height: 300px;
 
-  @media (max-width: 768px) {
-    order: 1;
-    margin: 10px;
-    aspect-ratio: 16/9;
-    width: auto;
+  @media (max-width: 1100px) {
+    display: none;
   }
 `;
 

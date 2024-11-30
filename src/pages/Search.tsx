@@ -12,7 +12,7 @@ import { makeImagePath } from "../utils";
 import Pagination from "react-js-pagination";
 import { useState } from "react";
 import Header from "../components/Header";
-import { AnimatePresence, useScroll, motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import MovieModal from "../components/MovieModal";
 
 interface GeneresItem {
@@ -233,7 +233,6 @@ const PaginationContainer = styled.div`
 const Search = () => {
   const navigate = useNavigate();
   const movieMatch = useMatch("/home/search/movies/:movieId");
-  const { scrollY } = useScroll();
 
   const { search } = useLocation();
   const keyword = new URLSearchParams(search).get("keyword");
@@ -310,7 +309,7 @@ const Search = () => {
               <Movie
                 key={i}
                 onClick={() => onBoxClicked(movie.id)}
-                layoutId={String(movie.id)}
+                layoutId={`movie-${movie.id}`}
               >
                 <MovieImgWrap>
                   {movie.poster_path || movie.backdrop_path ? (
@@ -365,8 +364,7 @@ const Search = () => {
               <MovieModal
                 movie={clickedMovie}
                 onOverlayClick={onOverlayClick}
-                layoutId={String(clickedMovie.id)}
-                scrollY={scrollY.get()}
+                layoutId={`movie-${movieMatch.params.movieId}`}
                 reviewsData={reviewsData || []}
                 videosData={videosData || []}
               />

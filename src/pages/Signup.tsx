@@ -20,6 +20,7 @@ import {
 } from "../styles/loginSignup.styled";
 import { useState } from "react";
 import initialFocusStates from "./util/initialFocusStates";
+import styled from "styled-components";
 
 interface FormData {
   id: string;
@@ -108,12 +109,12 @@ const Signup = () => {
               type="text"
               onFocus={() => handleFocus("id")}
               onBlur={(e) => handleBlur("id", e.target.value)}
-              hasError={!!errors.id}
+              $hasError={!!errors.id}
             />
             <Label
               htmlFor="id"
               className={focusStates.id ? "focused" : ""}
-              hasError={!!errors.id}
+              $hasError={!!errors.id}
             >
               {errors.id ? errors.id.message : "아이디"}
             </Label>
@@ -137,12 +138,12 @@ const Signup = () => {
               type="password"
               onFocus={() => handleFocus("password")}
               onBlur={(e) => handleBlur("password", e.target.value)}
-              hasError={!!errors.password}
+              $hasError={!!errors.password}
             />
             <Label
               htmlFor="password"
               className={focusStates.password ? "focused" : ""}
-              hasError={!!errors.password}
+              $hasError={!!errors.password}
             >
               {errors.password ? errors.password.message : "비밀번호"}
             </Label>
@@ -164,12 +165,12 @@ const Signup = () => {
               type="password"
               onFocus={() => handleFocus("passwordChack")}
               onBlur={(e) => handleBlur("passwordChack", e.target.value)}
-              hasError={!!errors.passwordChack}
+              $hasError={!!errors.passwordChack}
             />
             <Label
               htmlFor="passwordChack"
               className={focusStates.passwordChack ? "focused" : ""}
-              hasError={!!errors.passwordChack}
+              $hasError={!!errors.passwordChack}
             >
               {errors.password ? errors.password.message : "비밀번호 확인"}
             </Label>
@@ -189,12 +190,12 @@ const Signup = () => {
               type="email"
               onFocus={() => handleFocus("email")}
               onBlur={(e) => handleBlur("email", e.target.value)}
-              hasError={!!errors.email}
+              $hasError={!!errors.email}
             />
             <Label
               htmlFor="email"
               className={focusStates.email ? "focused" : ""}
-              hasError={!!errors.email}
+              $hasError={!!errors.email}
             >
               {errors.email ? errors.email.message : "이메일"}
             </Label>
@@ -216,12 +217,12 @@ const Signup = () => {
                 onFocus={() => handleFocus("phoneNum")}
                 onBlur={(e) => handleBlur("phoneNum", e.target.value)}
                 onInput={handlePhoneInput} // 수정된 이벤트 핸들러 사용
-                hasError={!!errors.phoneNum}
+                $hasError={!!errors.phoneNum}
               />
               <Label
                 htmlFor="phoneNum"
                 className={focusStates.phoneNum ? "focused" : ""}
-                hasError={!!errors.phoneNum}
+                $hasError={!!errors.phoneNum}
               >
                 {errors.phoneNum ? errors.phoneNum.message : "휴대폰 번호"}
               </Label>
@@ -247,12 +248,12 @@ const Signup = () => {
                 type="text"
                 onFocus={() => handleFocus("verificationCode")}
                 onBlur={(e) => handleBlur("verificationCode", e.target.value)}
-                hasError={!!errors.verificationCode}
+                $hasError={!!errors.verificationCode}
               />
               <Label
                 htmlFor="verificationCode"
                 className={focusStates.verificationCode ? "focused" : ""}
-                hasError={!!errors.verificationCode}
+                $hasError={!!errors.verificationCode}
               >
                 {errors.verificationCode
                   ? errors.verificationCode.message

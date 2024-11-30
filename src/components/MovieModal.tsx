@@ -10,10 +10,12 @@ import { GoCodeReview } from "react-icons/go";
 import { BiSolidCameraMovie } from "react-icons/bi";
 
 const ModalBox = styled(motion.div)`
-  position: absolute;
-  left: 0%;
-  right: 0%;
-  margin: 0 auto;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
   width: 85vw;
   height: 85vh;
   background-color: ${(props) => props.theme.black.lighter};
@@ -221,11 +223,8 @@ const MovieBackground = styled.div<{ $bgPhoto: string }>`
   border-radius: 15px;
   min-height: 300px;
 
-  @media (max-width: 768px) {
-    order: 1;
-    margin: 10px;
-    aspect-ratio: 16/9;
-    width: auto;
+  @media (max-width: 1100px) {
+    display: none;
   }
 `;
 
@@ -279,7 +278,6 @@ interface MovieModalProps {
   movie: any;
   onOverlayClick: () => void;
   layoutId: string;
-  scrollY: number;
   reviewsData: any[];
   videosData: any[];
 }
@@ -288,7 +286,6 @@ const MovieModal = ({
   movie,
   onOverlayClick,
   layoutId,
-  scrollY,
   reviewsData,
   videosData,
 }: MovieModalProps) => {
@@ -300,14 +297,10 @@ const MovieModal = ({
         exit={{ opacity: 0 }}
       />
       <ModalBox
-        style={{ top: scrollY + 100 }}
         layoutId={layoutId}
         transition={{
           type: "tween",
           duration: 0.3,
-          layout: {
-            duration: 0.3,
-          },
         }}
       >
         <CloseButton onClick={onOverlayClick} />

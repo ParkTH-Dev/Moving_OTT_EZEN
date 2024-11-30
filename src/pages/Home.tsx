@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import styled from "styled-components";
-import { motion, AnimatePresence, useScroll } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   getMovies,
   getTodayMovies,
@@ -26,7 +26,7 @@ const Container = styled.div`
   background: ${(props) => props.theme.black.darker};
   overflow-x: hidden;
   min-height: 100vh;
-
+  position: relative;
   @media (max-width: 768px) {
     margin-top: 50px;
   }
@@ -300,8 +300,6 @@ const Home = () => {
       queryFn: getTodayMovies,
     });
 
-  const { scrollY } = useScroll();
-
   const sliderRef = useRef<Slider>(null);
 
   const handlePrev = () => {
@@ -538,7 +536,7 @@ const Home = () => {
                 <SlideBox
                   key={movie.id}
                   onClick={() => onBoxClick(movie.id, "hot")}
-                  layoutId={`hot-${movie.id}`}
+                  layoutId={`movie-${movie.id}`}
                   $bgPhoto={makeImagePath(movie.poster_path || "")}
                   whileHover="hover"
                 >
@@ -580,15 +578,15 @@ const Home = () => {
           <MainSlider
             genereData={genereData}
             data={todayData?.results || []}
-            onBoxClick={(id) => onBoxClick(id, "search")}
-            sliderId="search"
+            onBoxClick={(id) => onBoxClick(id, "recommend")}
+            sliderId="recommend"
           />
           <SubTitle>내가 최근에 시청한 영화!</SubTitle>
           <MainSlider
             genereData={genereData}
             data={todayData?.results || []}
-            onBoxClick={(id) => onBoxClick(id, "recent")}
-            sliderId="recent"
+            onBoxClick={(id) => onBoxClick(id, "recommend")}
+            sliderId="recommend"
           />
 
           <AnimatePresence>
@@ -596,8 +594,7 @@ const Home = () => {
               <MovieModal
                 movie={clickedMovie}
                 onOverlayClick={onOverlayClick}
-                layoutId={`${currentSection}-${movieMatch.params.movieId}`}
-                scrollY={scrollY.get()}
+                layoutId={`movie-${movieMatch.params.movieId}`}
                 reviewsData={reviewsData || []}
                 videosData={videosData || []}
               />

@@ -52,8 +52,8 @@ export const Logo = styled.div`
   height: 100px;
   padding-left: 60px;
   @media (max-width: 768px) {
-    width: 50%;
     padding-left: 0;
+    justify-content: center;
   }
 `;
 
@@ -79,10 +79,15 @@ export const InputContainer = styled.div`
   position: relative;
   transition: all 500ms;
   @media (max-width: 768px) {
-    width: 80%;
   }
 `;
-export const Input = styled.input<{ hasError?: boolean }>`
+
+// Input 컴포넌트 타입 정의
+interface InputProps {
+  $hasError?: boolean;
+}
+
+export const Input = styled.input<InputProps>`
   ${inputStyle}
   margin-top: 20px;
   padding-top: 10px;
@@ -90,14 +95,20 @@ export const Input = styled.input<{ hasError?: boolean }>`
   background: ${({ theme }) => theme.black.lighter};
   &:focus {
     outline: none;
-    border-color: ${(props) => (props.hasError ? "#f00" : "inherit")};
+    border-color: ${(props) => (props.$hasError ? "red" : "initial")};
   }
 `;
-export const Label = styled.label<{ hasError?: boolean }>`
+
+// Label 컴포넌트 타입 정의
+interface LabelProps {
+  $hasError?: boolean;
+}
+
+export const Label = styled.label<LabelProps>`
   position: absolute;
   top: 49%;
   left: 16px;
-  color: ${(props) => (props.hasError ? "#f00" : props.theme.white.lighter)};
+  color: ${(props) => (props.$hasError ? "red" : props.theme.white.lighter)};
   user-select: none;
   transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1),
     color 150ms cubic-bezier(0.4, 0, 0.2, 1), top 150ms;
@@ -106,7 +117,7 @@ export const Label = styled.label<{ hasError?: boolean }>`
     left: 20px;
     transform: scale(0.9) translateY(110%);
     transform-origin: left;
-    color: ${(props) => (props.hasError ? "#f00" : props.theme.blue)};
+    color: ${(props) => (props.$hasError ? "red" : props.theme.blue)};
   }
 `;
 
@@ -122,7 +133,7 @@ export const Submit = styled.input`
     opacity: 0.8;
   }
   @media (max-width: 768px) {
-    width: 80%;
+    /* width: 80%; */
   }
 `;
 
@@ -189,7 +200,9 @@ export const VerificationWrapper = styled.div`
     gap: 20px;
   }
 `;
-export const PhoneNumberInput = styled.input<{ hasError: boolean }>`
+
+// PhoneNumberInput도 같은 방식으로 수정
+export const PhoneNumberInput = styled(Input)`
   ${inputStyle}
   width: 100%;
   margin-top: 20px;
@@ -198,7 +211,7 @@ export const PhoneNumberInput = styled.input<{ hasError: boolean }>`
   background: ${({ theme }) => theme.black.lighter};
   &:focus {
     outline: none;
-    border-color: ${(props) => (props.hasError ? "#f00" : "inherit")};
+    border-color: ${(props) => (props.$hasError ? "#f00" : "inherit")};
   }
   @media (max-width: 768px) {
     width: 100%;
